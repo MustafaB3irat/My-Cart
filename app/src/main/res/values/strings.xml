@@ -1,3 +1,9 @@
 <resources>
+
     <string name="app_name">My Cart</string>
+    <string name="purchase_summary">ملخص المصروفات</string>
+    <string name="consumption">الأكثر استهلاكاً</string>
+    <string name="about_app">عن التطبيق </string>
+    <string name="help">مساعدة</string>
+
 </resources>

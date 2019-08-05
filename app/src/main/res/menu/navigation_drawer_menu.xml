@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/summary"
+            android:icon="@drawable/ic_product"
+            android:title="@string/purchase_summary" />
+
+
+        <item
+            android:id="@+id/consumption"
+            android:icon="@drawable/ic_payment_method"
+            android:title="@string/consumption" />
+
+
+        <item
+            android:id="@+id/about_app"
+            android:icon="@drawable/ic_about_us"
+            android:title="@string/about_app" />
+
+    </group>
+
+
+    <item android:title="Others">
+        <menu>
+
+
+            <item
+                android:id="@+id/help"
+                android:icon="@drawable/ic_information"
+                android:title="@string/purchase_summary" />
+
+
+            <item
+                android:id="@+id/Settings"
+                android:icon="@drawable/ic_settings_work_tool"
+                android:title="@string/purchase_summary" />
+
+        </menu>
+    </item>
+
+</menu>
