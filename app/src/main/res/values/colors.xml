@@ -3,7 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="toolbar">#2F2057</color>
+    <color name="toolbar">#252244</color>
     <color name="sidebar_header">#2A2A2A</color>
     <color name="sidebar_body">#373737</color>
+    <color name="main_body">#5A539E</color>
+    <color name="add_stroke_blue_color">#88AAE5</color>
+    <color name="text_red_bright_color">#C72E2E</color>
+    <color name="edittext_color_dark">#262D40</color>
+    <color name="error">#F20000</color>
+
 </resources>

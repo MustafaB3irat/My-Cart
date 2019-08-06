@@ -5,5 +5,27 @@
     <string name="consumption">الأكثر استهلاكاً</string>
     <string name="about_app">عن التطبيق </string>
     <string name="help">مساعدة</string>
+    <string name="Settings">الإعدادات</string>
+    <string name="add_category">إضافة مجموعة</string>
+    <string name="add_element">إضافة عنصر</string>
+    <string name="others">أخرى</string>
+    <string name="main">رئيسية</string>
+    <string name="category_name"> اسم المجموعة *</string>
+    <string name="element_name"> اسم العنصر *</string>
+    <string name="element_price"> سعر العنصر *</string>
+    <string name="element_quantity"> الكمية *</string>
+    <string name="total_price"> إجمالي السعر *</string>
+    <string name="addElementButton">إضافة لقائمة العناصر</string>
+    <string name="addCategoryButton">إضافة لقائمة المجموعات</string>
+    <string name="category_names_isEmpty">* الرجاء اختيار مجموعة</string>
+    <string name="category_name_isEmpty">* الرجاء اضافة اسم المجموعة</string>
+    <string name="element_name_isEmpty">* الرجاء اضافة اسم العنصر</string>
+    <string name="element_price_isEmpty">* الرجاء اضافة سعر العنصر</string>
+    <string name="element_quantity_isEmpty">* الرجاء اضافة كمية العنصر</string>
+    <string name="added_element_successfully">تم إضافة العنصر بنجاح!</string>
+    <string name="added_category_successfully">تم إضافة المجموعة بنجاح!</string>
+    <string name="added_element_error">! حدث خطأ ما في اضافة العنصر </string>
+    <string name="added_category_error">! حدث خطأ ما في اضافة المجموعة </string>
+
 
 </resources>
