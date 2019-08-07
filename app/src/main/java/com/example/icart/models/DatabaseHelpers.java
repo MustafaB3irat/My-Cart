@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.icart.interfaces.DatabaseHelper;
 import com.example.icart.models.data.Catagory;
 import com.example.icart.models.data.Element;
@@ -12,7 +11,7 @@ import com.example.icart.models.data.Element;
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class DatabaseHelperModel extends SQLiteOpenHelper implements com.example.icart.interfaces.DatabaseHelper {
+public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.icart.interfaces.DatabaseHelper {
 
 
     private static final String CATAGORIES = "catagories";
@@ -21,7 +20,7 @@ public class DatabaseHelperModel extends SQLiteOpenHelper implements com.example
 
     private SQLiteDatabase db;
 
-    public DatabaseHelperModel(Context context) {
+    public DatabaseHelpers(Context context) {
         super(context, "iCart.db", null, 1);
     }
 
@@ -51,11 +50,11 @@ public class DatabaseHelperModel extends SQLiteOpenHelper implements com.example
     }
 
     @Override
-    public Cursor getCategory() {
+    public Cursor getCategories() {
 
         db = getWritableDatabase();
 
-        return db.rawQuery("select * from " + CATAGORIES, null);
+        return db.rawQuery("select * from " + CATAGORIES + " order by created_at DESC", null);
     }
 
     @Override

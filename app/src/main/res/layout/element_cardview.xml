@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="element"
+            type="com.example.icart.models.data.Element" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/element_cardview_bg">
+
+        <TextView
+            android:id="@+id/element_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:text="@{element.name}"
+            android:textColor="@android:color/white"
+            android:textDirection="rtl"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/price_bg"
+            android:layout_width="140dp"
+            android:layout_height="150dp"
+            android:layout_margin="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/element_name"
+            app:srcCompat="@drawable/price" />
+
+        <TextView
+            android:id="@+id/element_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:text="@{element.price}"
+            android:textColor="@android:color/white"
+            android:textDirection="rtl"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/price_bg"
+            app:layout_constraintEnd_toEndOf="@+id/price_bg"
+            app:layout_constraintStart_toStartOf="@+id/price_bg"
+            app:layout_constraintTop_toTopOf="@id/price_bg" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/quantity_bg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/element_name"
+            app:srcCompat="@drawable/quantity" />
+
+        <TextView
+            android:id="@+id/element_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:text="@{element.quantity}"
+            android:textColor="@android:color/white"
+            android:textDirection="rtl"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/quantity_bg"
+            app:layout_constraintEnd_toEndOf="@+id/quantity_bg"
+            app:layout_constraintStart_toStartOf="@+id/quantity_bg"
+            app:layout_constraintTop_toTopOf="@id/quantity_bg" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/created_at_bg"
+            android:layout_width="280dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price_bg"
+            app:srcCompat="@drawable/created_at" />
+
+        <TextView
+            android:id="@+id/element_created_at"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="@{element.created_at}"
+            android:textColor="@android:color/white"
+            android:textDirection="rtl"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/created_at_bg"
+            app:layout_constraintEnd_toEndOf="@+id/created_at_bg"
+            app:layout_constraintStart_toStartOf="@+id/created_at_bg"
+            app:layout_constraintTop_toTopOf="@id/created_at_bg" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

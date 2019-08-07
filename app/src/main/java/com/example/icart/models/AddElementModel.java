@@ -12,11 +12,11 @@ import java.util.Date;
 
 public class AddElementModel implements AddElement.AddElementModel {
 
-    private DatabaseHelperModel database;
+    private DatabaseHelpers database;
 
     public AddElementModel(DialogFragment dialogFragment) {
 
-        this.database = new DatabaseHelperModel(dialogFragment.getContext());
+        this.database = new DatabaseHelpers(dialogFragment.getContext());
     }
 
     @Override
@@ -34,6 +34,6 @@ public class AddElementModel implements AddElement.AddElementModel {
 
     @Override
     public Cursor getCategories() {
-        return database.getCategory();
+        return database.getCategories();
     }
 }

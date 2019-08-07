@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,9 +11,9 @@ import android.widget.ImageView;
 
 import com.example.icart.R;
 import com.example.icart.databinding.ActivityMainBinding;
-import com.example.icart.databinding.SidebarHeaderBinding;
 import com.example.icart.interfaces.Main;
 import com.example.icart.views.fragments.AddFragment;
+import com.example.icart.views.fragments.CategoriesFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
@@ -30,9 +29,12 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         activityMainBinding.sidebar.inflateHeaderView(R.layout.sidebar_header);
 
+        moveToCategoriesFragment();
+        initNavigationDrawerMenItems();
         setSupportActionBar(activityMainBinding.toolbar);
         initMultiMenuButton();
         initMenuButton();
+
 
     }
 
@@ -49,10 +51,6 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
 
     }
 
-    @Override
-    public void initMenuItems() {
-
-    }
 
     @Override
     public void initMultiMenuButton() {
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
         SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this).setLayoutParams(new FrameLayout.LayoutParams(200, 200));
 
         ImageView itemIcon = new ImageView(this);
-        itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.add));
+        itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.add_icon));
         SubActionButton add = itemBuilder.setContentView(itemIcon).build();
 
 
@@ -83,6 +81,35 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
         add.setOnClickListener(initAddButtonListener());
 
 
+    }
+
+    @Override
+    public void initNavigationDrawerMenItems() {
+
+        activityMainBinding.sidebar.setNavigationItemSelectedListener(item -> {
+
+
+            switch (item.getItemId()) {
+
+                case R.id.main: {
+
+                    activityMainBinding.drawer.closeDrawer(GravityCompat.START);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
+
+                    break;
+                }
+
+            }
+
+
+            return true;
+        });
+    }
+
+    @Override
+    public void moveToCategoriesFragment() {
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
     }
 
     @Override

@@ -1,77 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/add_bg">
+        android:layout_height="match_parent">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/add_category"
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/add_element">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/add_category_icon"
-                android:layout_width="318dp"
-                android:layout_height="220dp"
-                android:layout_marginTop="60dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/add_category" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/add_category_text"
-                android:layout_width="200dp"
-                android:layout_height="76dp"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/add_category_icon"
-                app:layout_constraintEnd_toEndOf="@+id/add_category_icon"
-                app:layout_constraintStart_toStartOf="@+id/add_category_icon"
-                app:layout_constraintTop_toTopOf="@id/add_category_icon"
-                app:srcCompat="@drawable/add_category_text" />
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/add_element"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_category">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/add_element_icon"
-                android:layout_width="318dp"
-                android:layout_height="220dp"
-                android:layout_marginTop="40dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/add_element" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/add_element_text"
-                android:layout_width="200dp"
-                android:layout_height="76dp"
-                app:layout_constraintEnd_toEndOf="@+id/add_element_icon"
-                app:layout_constraintStart_toStartOf="@+id/add_element_icon"
-                app:layout_constraintTop_toTopOf="@id/add_element_icon"
-                app:layout_constraintBottom_toBottomOf="@id/add_element_icon"
-                app:srcCompat="@drawable/add_element_text"
-            />
+            app:srcCompat="@drawable/add_bg" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/add_category"
+            android:layout_width="203dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_category" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/add_element"
+            android:layout_width="231dp"
+            android:layout_height="148dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/add_element" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/add_home"
+            android:layout_width="231dp"
+            android:layout_height="148dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="30dp"
+            app:srcCompat="@drawable/home" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

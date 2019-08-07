@@ -9,7 +9,7 @@
     <string name="add_category">إضافة مجموعة</string>
     <string name="add_element">إضافة عنصر</string>
     <string name="others">أخرى</string>
-    <string name="main">رئيسية</string>
+    <string name="main">الرئيسية</string>
     <string name="category_name"> اسم المجموعة *</string>
     <string name="element_name"> اسم العنصر *</string>
     <string name="element_price"> سعر العنصر *</string>

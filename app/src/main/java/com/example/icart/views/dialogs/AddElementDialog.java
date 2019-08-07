@@ -68,6 +68,7 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
                                 Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
                                 Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice)
                 ) {
+                    dismiss();
                     Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_successfully), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_error), Toast.LENGTH_SHORT).show();

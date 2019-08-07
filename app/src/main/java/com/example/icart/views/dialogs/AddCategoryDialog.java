@@ -18,6 +18,7 @@ import com.example.icart.databinding.AddCategoryDialogBinding;
 import com.example.icart.interfaces.AddCategory;
 import com.example.icart.presenters.AddCategoryPresenter;
 import com.example.icart.presenters.AddElementPresenter;
+import com.example.icart.views.fragments.CategoriesFragment;
 
 public class AddCategoryDialog extends DialogFragment implements AddCategory.AddCategoryDialog {
 
@@ -55,6 +56,8 @@ public class AddCategoryDialog extends DialogFragment implements AddCategory.Add
                         presenter.addCategory(addElementDialogBinding.categoryName.getText().toString(), "default")
                 ) {
                     Toast.makeText(this.getContext(), getResources().getString(R.string.added_category_successfully), Toast.LENGTH_SHORT).show();
+                    dismiss();
+                    this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment());
                 } else {
                     Toast.makeText(this.getContext(), getResources().getString(R.string.added_category_error), Toast.LENGTH_SHORT).show();
                 }

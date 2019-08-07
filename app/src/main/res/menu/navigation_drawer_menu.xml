@@ -4,6 +4,11 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/main"
+            android:icon="@drawable/ic_house_with_chimney"
+            android:title="@string/main" />
+
+        <item
             android:id="@+id/summary"
             android:icon="@drawable/ic_product"
             android:title="@string/purchase_summary" />

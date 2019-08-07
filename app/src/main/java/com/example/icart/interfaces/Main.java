@@ -14,8 +14,10 @@ public interface Main {
     interface MainView {
 
         void initMenuButton();
-        void initMenuItems();
         void initMultiMenuButton();
+        void initNavigationDrawerMenItems();
+
+        void moveToCategoriesFragment();
 
         View.OnClickListener initAddButtonListener();
         View.OnClickListener initRemoveButtonListener();

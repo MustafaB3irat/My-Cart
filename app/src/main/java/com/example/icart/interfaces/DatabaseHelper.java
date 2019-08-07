@@ -7,7 +7,7 @@ import com.example.icart.models.data.Element;
 
 public interface DatabaseHelper {
 
-    Cursor getCategory();
+    Cursor getCategories();
 
     Cursor getElements(String catagory);
 

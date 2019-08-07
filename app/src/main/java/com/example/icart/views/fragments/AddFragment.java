@@ -48,5 +48,11 @@ public class AddFragment extends Fragment implements Add.AddFragment {
             addCategoryDialog.show(getFragmentManager(), "Add New Category");
         });
 
+        addLayoutBinding.addHome.setOnClickListener(view -> {
+
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
+        });
+
+
     }
 }
