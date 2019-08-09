@@ -2,12 +2,10 @@ package com.example.icart.models.data;
 
 public class Element {
 
-    private String name, created_at;
-    private int quantity;
-    private float price, total;
+    private String name, created_at, quantity, price, total;
 
 
-    public Element(String name, String created_at, int quantity, float price, float total) {
+    public Element(String name, String created_at, String quantity, String price, String total) {
         this.name = name;
         this.created_at = created_at;
         this.quantity = quantity;
@@ -31,27 +29,27 @@ public class Element {
         this.created_at = created_at;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public float getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 }

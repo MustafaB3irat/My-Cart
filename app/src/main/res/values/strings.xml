@@ -26,6 +26,10 @@
     <string name="added_category_successfully">تم إضافة المجموعة بنجاح!</string>
     <string name="added_element_error">! حدث خطأ ما في اضافة العنصر </string>
     <string name="added_category_error">! حدث خطأ ما في اضافة المجموعة </string>
+    <string name="delete_category_confirmation">حذف المجموعة يؤدي لحذف العناصر أيضاً،هل أنت متأكد؟ </string>
+    <string name="error">! حدث خطأ ما</string>
+    <string name="alert">تحذير !</string>
+
 
 
 </resources>

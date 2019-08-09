@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import com.example.icart.interfaces.DatabaseHelper;
 import com.example.icart.models.data.Catagory;
 import com.example.icart.models.data.Element;
@@ -78,8 +79,12 @@ public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.ica
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
+        int elementQuantity = Integer.parseInt(element.getQuantity());
+        float elementPrice = Float.parseFloat(element.getPrice());
+        float elementTotal = Float.parseFloat(element.getTotal());
 
-        db.execSQL("insert into " + ELEMENT + " (element_name  , quantity , price  , total , created_at , catagory_name) values ('" + element.getName() + "' , " + element.getQuantity() + " , " + element.getPrice() + ", " + element.getTotal() + ", '" + element.getCreated_at() + "','" + category_name + "')");
+
+        db.execSQL("insert into " + ELEMENT + " (element_name  , quantity , price  , total , created_at , catagory_name) values ('" + element.getName() + "' , " + elementQuantity + " , " + elementPrice + ", " + elementTotal + ", '" + element.getCreated_at() + "','" + category_name + "')");
         return true;
     }
 
@@ -91,5 +96,28 @@ public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.ica
         db.execSQL("insert into " + CATAGORIES + " (catagory_name  , created_at , catagory_avatar ) values ('" + catagory.getName() + "' , '" + catagory.getCreated_at() + "' , '" + catagory.getCatagory_avatar() + "')");
         return true;
 
+    }
+
+    @Override
+    public boolean deleteCategory(String categoryName) {
+
+        db = this.getWritableDatabase();
+
+        try {
+
+
+            db.execSQL("delete from " + ELEMENT + " where catagory_name = '" + categoryName + "'");
+            db.execSQL("delete from " + CATAGORIES + " where catagory_name = '" + categoryName + "'");
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean deleteElement(String elementName) {
+        return false;
     }
 }

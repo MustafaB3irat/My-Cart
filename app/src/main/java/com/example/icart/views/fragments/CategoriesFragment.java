@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.icart.R;
 import com.example.icart.adapters.CataegoryAdpater;
+import com.example.icart.customCallbacks.MyItemTouchHelperSimpleCallBack;
 import com.example.icart.databinding.CategoriesLayoutBinding;
 import com.example.icart.interfaces.Categories;
 import com.example.icart.models.data.Catagory;
@@ -44,6 +46,8 @@ public class CategoriesFragment extends Fragment implements Categories.Categorie
         cataegoryAdpater = new CataegoryAdpater(catagoryList, this);
         categoriesLayoutBinding.categoriesRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
         categoriesLayoutBinding.categoriesRecyclerview.setAdapter(cataegoryAdpater);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new MyItemTouchHelperSimpleCallBack(cataegoryAdpater));
+        itemTouchHelper.attachToRecyclerView(categoriesLayoutBinding.categoriesRecyclerview);
 
     }
 }

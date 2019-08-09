@@ -13,9 +13,13 @@ public interface DatabaseHelper {
 
     boolean setLock(String password);
 
-    boolean addElement(Element element , String catagory_name);
+    boolean addElement(Element element, String catagory_name);
 
     boolean addCategory(Catagory catagory);
+
+    boolean deleteCategory(String categoryName);
+
+    boolean deleteElement(String elementName);
 
 
 }

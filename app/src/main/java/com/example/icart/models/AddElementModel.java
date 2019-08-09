@@ -28,7 +28,7 @@ public class AddElementModel implements AddElement.AddElementModel {
 
         String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[0];
 
-        Element element = new Element(elementName, created_at, elementQuantity, elementPrice, elementTotalPrice);
+        Element element = new Element(elementName, created_at, String.valueOf(elementQuantity), String.valueOf(elementPrice), String.valueOf(elementTotalPrice));
         return database.addElement(element, categoryName);
     }
 
