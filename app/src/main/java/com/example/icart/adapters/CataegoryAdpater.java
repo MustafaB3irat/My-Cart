@@ -20,6 +20,7 @@ import com.example.icart.databinding.CategoriesCardviewBinding;
 import com.example.icart.models.DatabaseHelpers;
 import com.example.icart.models.data.Catagory;
 import com.example.icart.views.ElementsActivity;
+import com.example.icart.views.dialogs.AddCategoryDialog;
 import com.example.icart.views.fragments.CategoriesFragment;
 
 import java.util.List;
@@ -95,7 +96,7 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
         new AlertDialog.Builder(fragment.getContext())
                 .setTitle(fragment.getResources().getString(R.string.alert))
                 .setMessage(fragment.getResources().getString(R.string.delete_category_confirmation))
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.ic_delete)
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
 
 
@@ -107,8 +108,22 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
                     }
 
                 })
-                .setNegativeButton(android.R.string.no, null).show();
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
+                        fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
+                    }
+                }).show();
+
+
+    }
+
+    public void editItem(int position) {
+
+        AddCategoryDialog addCategoryDialog = new AddCategoryDialog();
+        addCategoryDialog.show(fragment.getFragmentManager(), "Update Category");
+        addCategoryDialog.setCategoryName(catagories.get(position).getName());
 
     }
 

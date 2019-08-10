@@ -13,11 +13,15 @@ public interface AddCategory {
 
     interface AddCategoryModel {
 
-        boolean addCategory(String categoryName , String category_avatar);
+        boolean addCategory(String categoryName, String category_avatar);
+
+        boolean updateCategory(String categoryName, String newCategoryName);
     }
 
     interface AddCategoryPresenter {
 
-        boolean addCategory(String categoryName , String category_avatar);
+        boolean addCategory(String categoryName, String category_avatar);
+
+        boolean updateCategory(String categoryName, String newCategoryName);
     }
 }

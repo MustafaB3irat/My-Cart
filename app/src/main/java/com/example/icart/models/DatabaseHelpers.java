@@ -117,6 +117,23 @@ public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.ica
     }
 
     @Override
+    public boolean editCategory(String categoryName, Catagory catagory) {
+
+        this.db = getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE " + CATAGORIES + " set catagory_name = '" + catagory.getName() + "' , created_at = '" + catagory.getCreated_at() + "' where catagory_name = '" + categoryName + "'");
+
+            db.execSQL("update " + ELEMENT + " set catagory_name =  '" + catagory.getName() + "' where catagory_name = '" + categoryName + "'");
+        } catch (Exception e) {
+            return false;
+        }
+
+
+        return true;
+    }
+
+    @Override
     public boolean deleteElement(String elementName) {
         return false;
     }

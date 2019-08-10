@@ -39,13 +39,13 @@ public class AddFragment extends Fragment implements Add.AddFragment {
         addLayoutBinding.addElement.setOnClickListener(view -> {
 
             AddElementDialog dialog = new AddElementDialog();
-            dialog.show(getFragmentManager(), "Add New Element");
+            dialog.show(getFragmentManager(), "Add Element");
         });
 
         addLayoutBinding.addCategory.setOnClickListener(view -> {
 
             AddCategoryDialog addCategoryDialog = new AddCategoryDialog();
-            addCategoryDialog.show(getFragmentManager(), "Add New Category");
+            addCategoryDialog.show(getFragmentManager(), "Add Category");
         });
 
         addLayoutBinding.addHome.setOnClickListener(view -> {

@@ -19,6 +19,8 @@ public interface DatabaseHelper {
 
     boolean deleteCategory(String categoryName);
 
+    boolean editCategory(String categoryName, Catagory catagory);
+
     boolean deleteElement(String elementName);
 
 

@@ -16,6 +16,8 @@
     <string name="element_quantity"> الكمية *</string>
     <string name="total_price"> إجمالي السعر *</string>
     <string name="addElementButton">إضافة لقائمة العناصر</string>
+    <string name="UpdateElement">تعديل العنصر</string>
+    <string name="UpdateCategoryButton">تعديل المجموعة</string>
     <string name="addCategoryButton">إضافة لقائمة المجموعات</string>
     <string name="category_names_isEmpty">* الرجاء اختيار مجموعة</string>
     <string name="category_name_isEmpty">* الرجاء اضافة اسم المجموعة</string>
@@ -23,13 +25,16 @@
     <string name="element_price_isEmpty">* الرجاء اضافة سعر العنصر</string>
     <string name="element_quantity_isEmpty">* الرجاء اضافة كمية العنصر</string>
     <string name="added_element_successfully">تم إضافة العنصر بنجاح!</string>
+    <string name="update_element_successfully">تم تعديل العنصر بنجاح!</string>
     <string name="added_category_successfully">تم إضافة المجموعة بنجاح!</string>
+    <string name="update_category_successfully">تم تعديل المجموعة بنجاح!</string>
     <string name="added_element_error">! حدث خطأ ما في اضافة العنصر </string>
+    <string name="update_element_error">! حدث خطأ ما في تعديل العنصر </string>
     <string name="added_category_error">! حدث خطأ ما في اضافة المجموعة </string>
+    <string name="update_category_error">! حدث خطأ ما في تعديل المجموعة </string>
     <string name="delete_category_confirmation">حذف المجموعة يؤدي لحذف العناصر أيضاً،هل أنت متأكد؟ </string>
     <string name="error">! حدث خطأ ما</string>
     <string name="alert">تحذير !</string>
-
 
 
 </resources>

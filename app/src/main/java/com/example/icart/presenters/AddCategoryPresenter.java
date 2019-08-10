@@ -20,4 +20,9 @@ public class AddCategoryPresenter implements AddCategory.AddCategoryPresenter {
     public boolean addCategory(String categoryName, String category_avatar) {
         return addCategoryModel.addCategory(categoryName,category_avatar);
     }
+
+    @Override
+    public boolean updateCategory(String categoryName , String newCategoryName) {
+        return addCategoryModel.updateCategory(categoryName,newCategoryName);
+    }
 }

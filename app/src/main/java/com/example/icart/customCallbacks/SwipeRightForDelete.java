@@ -14,17 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.icart.R;
 import com.example.icart.adapters.CataegoryAdpater;
 
-public class MyItemTouchHelperSimpleCallBack extends ItemTouchHelper.SimpleCallback {
+public class SwipeRightForDelete extends ItemTouchHelper.SimpleCallback {
 
 
     private CataegoryAdpater cataegoryAdpater;
     private Drawable icon;
 
 
-
-    public MyItemTouchHelperSimpleCallBack(CataegoryAdpater cataegoryAdpater) {
+    public SwipeRightForDelete(CataegoryAdpater cataegoryAdpater) {
 
         super(0, ItemTouchHelper.RIGHT);
+
 
         this.cataegoryAdpater = cataegoryAdpater;
         icon = ContextCompat.getDrawable(cataegoryAdpater.getContext(),
@@ -39,8 +39,11 @@ public class MyItemTouchHelperSimpleCallBack extends ItemTouchHelper.SimpleCallb
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-        int position  = viewHolder.getAdapterPosition();
+        int position = viewHolder.getAdapterPosition();
+
+
         cataegoryAdpater.deleteItem(position);
+
 
     }
 
@@ -54,7 +57,7 @@ public class MyItemTouchHelperSimpleCallBack extends ItemTouchHelper.SimpleCallb
 
         if (dX > 0) {
 
-            icon.setBounds(itemView.getLeft(), itemView.getTop(),itemView.getLeft() + ((int) dX) + backgroundCornerOffset,
+            icon.setBounds(itemView.getLeft() , itemView.getTop(), (itemView.getLeft() + ((int) dX) + backgroundCornerOffset) ,
                     itemView.getBottom());
 
         } else if (dX < 0) {

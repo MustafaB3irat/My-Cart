@@ -18,12 +18,26 @@ public class AddCategoryModel implements AddCategory.AddCategoryModel {
     }
 
     @Override
-    public boolean addCategory(String categoryName ,String category_avatar) {
+    public boolean addCategory(String categoryName, String category_avatar) {
 
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
         String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[1];
         return databaseHelpersModel.addCategory(new Catagory(categoryName, category_avatar, created_at));
+    }
+
+    @Override
+    public boolean updateCategory(String categoryName, String newCategoryName) {
+
+
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+
+        String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[1];
+
+        Catagory catagory = new Catagory(newCategoryName, "default", created_at);
+
+        return databaseHelpersModel.editCategory(categoryName, catagory);
     }
 }

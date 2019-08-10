@@ -2,6 +2,7 @@ package com.example.icart.views.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class AddCategoryDialog extends DialogFragment implements AddCategory.Add
     private AlertDialog.Builder builder;
     private AddCategoryDialogBinding addElementDialogBinding;
     private AddCategory.AddCategoryPresenter presenter;
+    private String old_category_name;
 
 
     @NonNull
@@ -37,7 +39,15 @@ public class AddCategoryDialog extends DialogFragment implements AddCategory.Add
         addElementDialogBinding = DataBindingUtil.inflate(inflater, R.layout.add_category_dialog, null, false);
         presenter = new AddCategoryPresenter(this);
 
+
+        if (this.getTag().equals("Update Category")) {
+            addElementDialogBinding.categoryName.setText(old_category_name);
+            addElementDialogBinding.addCategoryButton.setText(getResources().getString(R.string.UpdateCategoryButton));
+        }
+
         builder.setView(addElementDialogBinding.getRoot()).setTitle("");
+
+
 
         initOnTextChanged();
         initAddButton();
@@ -52,15 +62,35 @@ public class AddCategoryDialog extends DialogFragment implements AddCategory.Add
         addElementDialogBinding.addCategoryButton.setOnClickListener(view -> {
 
             if (validate()) {
-                if (
-                        presenter.addCategory(addElementDialogBinding.categoryName.getText().toString(), "default")
-                ) {
-                    Toast.makeText(this.getContext(), getResources().getString(R.string.added_category_successfully), Toast.LENGTH_SHORT).show();
-                    dismiss();
-                    this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment());
+
+
+                if (this.getTag().equals("Update Category")) {
+
+
+                    if (presenter.updateCategory(old_category_name, addElementDialogBinding.categoryName.getText().toString())) {
+
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.update_category_successfully), Toast.LENGTH_SHORT).show();
+                        dismiss();
+                        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
+
+                    } else {
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.update_category_error), Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
-                    Toast.makeText(this.getContext(), getResources().getString(R.string.added_category_error), Toast.LENGTH_SHORT).show();
+
+                    if (presenter.addCategory(addElementDialogBinding.categoryName.getText().toString(), "default")) {
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.added_category_successfully), Toast.LENGTH_SHORT).show();
+                        dismiss();
+                        this.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
+                    } else {
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.added_category_error), Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
+
+
             }
 
         });
@@ -86,5 +116,9 @@ public class AddCategoryDialog extends DialogFragment implements AddCategory.Add
             addElementDialogBinding.categoryNameError.setText("");
         }));
 
+    }
+
+    public void setCategoryName(String name) {
+        old_category_name = name;
     }
 }

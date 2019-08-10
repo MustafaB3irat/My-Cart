@@ -14,7 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.icart.R;
 import com.example.icart.adapters.CataegoryAdpater;
-import com.example.icart.customCallbacks.MyItemTouchHelperSimpleCallBack;
+import com.example.icart.customCallbacks.SwipeLeftForEdit;
+import com.example.icart.customCallbacks.SwipeRightForDelete;
 import com.example.icart.databinding.CategoriesLayoutBinding;
 import com.example.icart.interfaces.Categories;
 import com.example.icart.models.data.Catagory;
@@ -46,8 +47,11 @@ public class CategoriesFragment extends Fragment implements Categories.Categorie
         cataegoryAdpater = new CataegoryAdpater(catagoryList, this);
         categoriesLayoutBinding.categoriesRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
         categoriesLayoutBinding.categoriesRecyclerview.setAdapter(cataegoryAdpater);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new MyItemTouchHelperSimpleCallBack(cataegoryAdpater));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeRightForDelete(cataegoryAdpater));
         itemTouchHelper.attachToRecyclerView(categoriesLayoutBinding.categoriesRecyclerview);
+
+        ItemTouchHelper itemTouchHelper1 = new ItemTouchHelper(new SwipeLeftForEdit(cataegoryAdpater));
+        itemTouchHelper1.attachToRecyclerView(categoriesLayoutBinding.categoriesRecyclerview);
 
     }
 }
