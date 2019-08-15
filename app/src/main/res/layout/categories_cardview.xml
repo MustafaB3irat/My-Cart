@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="category"
             type="com.example.icart.models.data.Catagory" />
@@ -12,23 +13,25 @@
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:background="#333333"
+        app:cardCornerRadius="50dp"
         app:cardElevation="5dp"
         app:cardPreventCornerOverlap="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/cardview">
+            android:background="@drawable/category_cardview">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/category_avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,16 +39,36 @@
                 android:id="@+id/category_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="20dp"
-                android:text="@{category.name}"
                 android:gravity="center"
+                android:text="@{category.name}"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/category_avatar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/category_avatar"
+                app:layout_constraintTop_toTopOf="@+id/category_avatar" />
+
+
+            <TextView
+                android:id="@+id/category_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="@{category.created_at}"
+                android:textColor="@android:color/white"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/category_avatar"
                 app:layout_constraintTop_toBottomOf="@+id/category_avatar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

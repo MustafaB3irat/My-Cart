@@ -2,6 +2,7 @@ package com.example.icart.views.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -21,6 +22,7 @@ import com.example.icart.R;
 import com.example.icart.customListeners.MyTextWatcher;
 import com.example.icart.databinding.AddElementDialogBinding;
 import com.example.icart.interfaces.AddElement;
+import com.example.icart.models.data.Element;
 import com.example.icart.presenters.AddElementPresenter;
 
 import java.util.ArrayList;
@@ -31,6 +33,9 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
     private AddElementDialogBinding addElementDialogBinding;
     private AlertDialog.Builder builder;
     private AddElement.AddElementPresenter presenter;
+    private Element oldElement;
+    private String oldElementName;
+    private String oldCategory;
 
 
     @NonNull
@@ -51,6 +56,21 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
         initAddButton();
         calculateTotalPriceOnTextChanged();
 
+
+        if (this.getTag().equals("Update Element")) {
+            addElementDialogBinding.categoryNames.setVisibility(View.GONE);
+            addElementDialogBinding.categoryNameText.setVisibility(View.GONE);
+            addElementDialogBinding.categoryNames.setSelection(((ArrayAdapter) addElementDialogBinding.categoryNames.getAdapter()).getPosition(oldCategory));
+            addElementDialogBinding.elementName.setText(oldElement.getName());
+            addElementDialogBinding.elementTotalPrice.setText(oldElement.getTotal());
+            addElementDialogBinding.elementQuantity.setText(oldElement.getQuantity());
+            addElementDialogBinding.elementPrice.setText(oldElement.getPrice());
+
+            addElementDialogBinding.addElementButton.setText(getResources().getString(R.string.edit));
+            oldElementName = oldElement.getName();
+        }
+
+
         return builder.create();
     }
 
@@ -63,15 +83,39 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
 
                 float totalPrice = Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()) * Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString());
 
-                if (
-                        presenter.addElement(addElementDialogBinding.categoryNames.getSelectedItem().toString(), addElementDialogBinding.elementName.getText().toString(),
-                                Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
-                                Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice)
-                ) {
-                    dismiss();
-                    Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_successfully), Toast.LENGTH_SHORT).show();
+
+                if (this.getTag().equals("Update Element")) {
+
+
+                    if (presenter.editElement(addElementDialogBinding.elementName.getText().toString(),
+                            Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
+                            Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice, oldElementName)) {
+                        dismiss();
+
+                        Intent intent = new Intent(getActivity(), getActivity().getClass());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.putExtra("category", oldCategory);
+                        startActivity(intent);
+                        getActivity().overridePendingTransition(0, 0);
+                        getActivity().finish();
+
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.update_element_successfully), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.update_element_error), Toast.LENGTH_SHORT).show();
+                    }
+
+
                 } else {
-                    Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_error), Toast.LENGTH_SHORT).show();
+
+                    if (presenter.addElement(addElementDialogBinding.categoryNames.getSelectedItem().toString(), addElementDialogBinding.elementName.getText().toString(),
+                            Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
+                            Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice)) {
+                        dismiss();
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_successfully), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_error), Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
             }
@@ -187,6 +231,13 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
                 android.R.layout.simple_spinner_item, categoriesList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
+    }
+
+    @Override
+    public void setOldElementForEdit(Element oldElementForEdit, String categoryName) {
+
+        this.oldElement = oldElementForEdit;
+        this.oldCategory = categoryName;
     }
 
 

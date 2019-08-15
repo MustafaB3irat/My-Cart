@@ -10,6 +10,8 @@
     <string name="add_element">إضافة عنصر</string>
     <string name="others">أخرى</string>
     <string name="main">الرئيسية</string>
+    <string name="edit">تعديل</string>
+    <string name="delete">حذف</string>
     <string name="category_name"> اسم المجموعة *</string>
     <string name="element_name"> اسم العنصر *</string>
     <string name="element_price"> سعر العنصر *</string>
@@ -33,6 +35,7 @@
     <string name="added_category_error">! حدث خطأ ما في اضافة المجموعة </string>
     <string name="update_category_error">! حدث خطأ ما في تعديل المجموعة </string>
     <string name="delete_category_confirmation">حذف المجموعة يؤدي لحذف العناصر أيضاً،هل أنت متأكد؟ </string>
+    <string name="are_you_sure">هل أنت متأكد؟ </string>
     <string name="error">! حدث خطأ ما</string>
     <string name="alert">تحذير !</string>
 

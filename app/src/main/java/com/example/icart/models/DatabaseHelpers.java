@@ -135,6 +135,34 @@ public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.ica
 
     @Override
     public boolean deleteElement(String elementName) {
-        return false;
+
+
+        db = this.getWritableDatabase();
+
+        try {
+            db.execSQL("delete from " + ELEMENT + " where element_name = '" + elementName + "'");
+
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
+
+    @Override
+    public boolean editElement(String oldElementName, Element newElement) {
+
+        this.db = getWritableDatabase();
+
+        try {
+            db.execSQL("update " + ELEMENT + " set element_name =  '" + newElement.getName() + "' , price = " + newElement.getPrice() + " , quantity = " + newElement.getQuantity() + " , total = " + newElement.getTotal() + " , created_at = '" + newElement.getCreated_at() + "'  where element_name = '" + oldElementName + "'");
+        } catch (Exception e) {
+            return false;
+        }
+
+
+        return true;
+    }
+
+
 }

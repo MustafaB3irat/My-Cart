@@ -47,7 +47,7 @@ public class ElementsActivity extends AppCompatActivity implements Elements.Elem
         }
 
 
-        elementsAdapter = new ElementsAdapter(elementList);
+        elementsAdapter = new ElementsAdapter(elementList , this);
         elementsLayoutBinding.elementsRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         elementsLayoutBinding.elementsRecyclerview.setAdapter(elementsAdapter);
 

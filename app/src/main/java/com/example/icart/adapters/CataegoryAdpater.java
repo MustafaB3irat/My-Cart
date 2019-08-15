@@ -1,25 +1,25 @@
 package com.example.icart.adapters;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.ActionMode;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.example.icart.R;
+import com.example.icart.customCallbacks.CategoryActionModeCallBack;
 import com.example.icart.databinding.CategoriesCardviewBinding;
 import com.example.icart.models.DatabaseHelpers;
 import com.example.icart.models.data.Catagory;
 import com.example.icart.views.ElementsActivity;
+import com.example.icart.views.MainActivity;
 import com.example.icart.views.dialogs.AddCategoryDialog;
 import com.example.icart.views.fragments.CategoriesFragment;
 
@@ -30,6 +30,7 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
     List<Catagory> catagories;
     private CategoriesFragment fragment;
     private DatabaseHelpers databaseHelpers;
+    private ActionMode actionMode;
 
     public CataegoryAdpater(List<Catagory> catagories, CategoriesFragment fragment) {
         this.catagories = catagories;
@@ -55,13 +56,35 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
 
         holder.categoriesCardviewBinding.setCategory(catagory);
 
+
+        holder.categoriesCardviewBinding.categoryAvatar.setAnimation(AnimationUtils.loadAnimation(fragment.getContext(), R.anim.fade_in_transition));
+        holder.categoriesCardviewBinding.cardview.setAnimation(AnimationUtils.loadAnimation(fragment.getContext(), R.anim.fade_in_scale));
+
+
         if (catagory.getCatagory_avatar().equals("default")) {
             holder.categoriesCardviewBinding.categoryAvatar.setImageResource(R.drawable.ic_question);
         }
 
         initCardViewClickable(holder.categoriesCardviewBinding);
+        initCardViewLongClick(holder.categoriesCardviewBinding , holder);
 
 
+    }
+
+
+    private void initCardViewLongClick(CategoriesCardviewBinding categoriesCardviewBinding , CategoryViewHolder categoryViewHolder) {
+        categoriesCardviewBinding.cardview.setOnLongClickListener(view -> {
+            view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
+
+            CategoryActionModeCallBack categoryActionModeCallBack = new CategoryActionModeCallBack(this , categoryViewHolder);
+
+            actionMode = ((MainActivity)fragment.getActivity()).toolbar.startActionMode(categoryActionModeCallBack);
+            if (actionMode == null)
+                return  false;
+
+
+            return true;
+        });
     }
 
     private void initCardViewClickable(CategoriesCardviewBinding categoriesCardviewBinding) {
@@ -108,13 +131,7 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
                     }
 
                 })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                        fragment.getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
-                    }
-                }).show();
+                .setNegativeButton(android.R.string.no, null).show();
 
 
     }

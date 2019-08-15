@@ -25,6 +25,11 @@ public class AddElementPresenter implements AddElement.AddElementPresenter {
     }
 
     @Override
+    public boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName) {
+        return addElementModel.editElement(elementName, elementPrice, elementQuantity, elementTotalPrice, oldElementName);
+    }
+
+    @Override
     public Cursor getCategories() {
         return addElementModel.getCategories();
     }

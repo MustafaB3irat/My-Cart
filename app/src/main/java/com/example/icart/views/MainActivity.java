@@ -1,6 +1,7 @@
 package com.example.icart.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
 
     private ActivityMainBinding activityMainBinding;
     private FloatingActionMenu actionMenu;
+    public Toolbar toolbar;
 
 
     @Override
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
         setSupportActionBar(activityMainBinding.toolbar);
         initMultiMenuButton();
         initMenuButton();
+
+
+        toolbar = activityMainBinding.toolbar;
 
 
     }

@@ -23,5 +23,7 @@ public interface DatabaseHelper {
 
     boolean deleteElement(String elementName);
 
+    boolean editElement(String oldElementName, Element newElement);
+
 
 }

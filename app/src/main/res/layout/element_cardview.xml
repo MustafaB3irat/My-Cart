@@ -112,7 +112,7 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
                 android:gravity="center"
-                android:text="@{element.quantity}"
+                android:text="@{element.total}"
                 android:textColor="@android:color/white"
                 android:textDirection="rtl"
                 android:textSize="16sp"
