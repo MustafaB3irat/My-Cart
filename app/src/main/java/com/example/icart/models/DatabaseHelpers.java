@@ -134,13 +134,13 @@ public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.ica
     }
 
     @Override
-    public boolean deleteElement(String elementName) {
+    public boolean deleteElement(String eid) {
 
 
         db = this.getWritableDatabase();
 
         try {
-            db.execSQL("delete from " + ELEMENT + " where element_name = '" + elementName + "'");
+            db.execSQL("delete from " + ELEMENT + " where eid = " + eid);
 
         } catch (Exception e) {
             return false;
@@ -150,18 +150,51 @@ public class DatabaseHelpers extends SQLiteOpenHelper implements com.example.ica
     }
 
     @Override
-    public boolean editElement(String oldElementName, Element newElement) {
+    public boolean editElement(String oldEid, Element newElement) {
 
         this.db = getWritableDatabase();
 
         try {
-            db.execSQL("update " + ELEMENT + " set element_name =  '" + newElement.getName() + "' , price = " + newElement.getPrice() + " , quantity = " + newElement.getQuantity() + " , total = " + newElement.getTotal() + " , created_at = '" + newElement.getCreated_at() + "'  where element_name = '" + oldElementName + "'");
+            db.execSQL("update " + ELEMENT + " set element_name =  '" + newElement.getName() + "' , price = " + newElement.getPrice() + " , quantity = " + newElement.getQuantity() + " , total = " + newElement.getTotal() + " , created_at = '" + newElement.getCreated_at() + "'  where eid = " + oldEid);
         } catch (Exception e) {
             return false;
         }
 
 
         return true;
+    }
+
+    @Override
+    public boolean updateCategoryTimestamp(String newTimestamp, String categoryName) {
+        this.db = getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE " + CATAGORIES + " set  created_at = '" + newTimestamp + "' where catagory_name = '" + categoryName + "'");
+
+        } catch (Exception e) {
+            return false;
+        }
+
+
+        return true;
+    }
+
+    @Override
+    public Cursor getCategorySummary() {
+
+
+        db = getWritableDatabase();
+
+        return db.rawQuery("select element.catagory_name ,  SUM(element.total) as total  from  " + CATAGORIES + " ,  " + ELEMENT + " where  element.catagory_name = catagories.catagory_name group by element.catagory_name order by catagories.created_at DESC", null);
+    }
+
+    @Override
+    public Cursor getMostConsuming() {
+
+
+        db = getWritableDatabase();
+
+        return db.rawQuery("select element_name ,  COUNT(*) as numOfTimes  , SUM(element.total) as totalSum from element group by element.element_name order by totalSum DESC", null);
     }
 
 

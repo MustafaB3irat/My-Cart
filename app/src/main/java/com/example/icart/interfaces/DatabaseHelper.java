@@ -26,4 +26,11 @@ public interface DatabaseHelper {
     boolean editElement(String oldElementName, Element newElement);
 
 
+    boolean updateCategoryTimestamp(String newTimestamp, String categoryName);
+
+    Cursor getCategorySummary();
+
+    Cursor getMostConsuming();
+
+
 }

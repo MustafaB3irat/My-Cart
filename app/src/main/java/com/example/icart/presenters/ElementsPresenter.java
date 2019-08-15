@@ -33,7 +33,7 @@ public class ElementsPresenter implements Elements.ElementsPresenter {
 
             elements.add(new Element(cursor.getString(cursor.getColumnIndex("element_name")), cursor.getString(cursor.getColumnIndex("created_at")), String.valueOf(cursor.getInt(cursor.getColumnIndex("quantity"))),
                     String.valueOf(cursor.getFloat(cursor.getColumnIndex("price"))),
-                    String.valueOf(cursor.getFloat(cursor.getColumnIndex("total")))));
+                    String.valueOf(cursor.getFloat(cursor.getColumnIndex("total"))), String.valueOf(cursor.getInt(cursor.getColumnIndex("eid")))));
 
         }
 

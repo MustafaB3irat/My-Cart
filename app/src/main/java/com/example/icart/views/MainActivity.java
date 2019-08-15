@@ -15,6 +15,8 @@ import com.example.icart.databinding.ActivityMainBinding;
 import com.example.icart.interfaces.Main;
 import com.example.icart.views.fragments.AddFragment;
 import com.example.icart.views.fragments.CategoriesFragment;
+import com.example.icart.views.fragments.CategorySummaryFragment;
+import com.example.icart.views.fragments.MostConsumingFragment;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
@@ -100,6 +102,22 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
 
                     activityMainBinding.drawer.closeDrawer(GravityCompat.START);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategoriesFragment()).commitNow();
+
+                    break;
+                }
+
+                case R.id.summary: {
+
+                    activityMainBinding.drawer.closeDrawer(GravityCompat.START);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new CategorySummaryFragment()).commitNow();
+
+                    break;
+                }
+
+                case R.id.consumption: {
+
+                    activityMainBinding.drawer.closeDrawer(GravityCompat.START);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new MostConsumingFragment()).commitNow();
 
                     break;
                 }

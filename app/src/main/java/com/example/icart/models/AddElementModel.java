@@ -20,28 +20,33 @@ public class AddElementModel implements AddElement.AddElementModel {
     }
 
     @Override
-    public boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice) {
+    public boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice , String eid) {
 
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
 
-        String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[0];
+        String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[1];
 
-        Element element = new Element(elementName, created_at, String.valueOf(elementQuantity), String.valueOf(elementPrice), String.valueOf(elementTotalPrice));
+        Element element = new Element(elementName, created_at, String.valueOf(elementQuantity), String.valueOf(elementPrice), String.valueOf(elementTotalPrice), eid);
+
+        database.updateCategoryTimestamp(created_at, categoryName);
+
         return database.addElement(element, categoryName);
     }
 
     @Override
-    public boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName) {
+    public boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String eid , String categoryName) {
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());
 
 
-        String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[0];
+        String created_at = timestamp.toString().split(":")[0] + ":" + timestamp.toString().split(":")[1];
 
-        Element element = new Element(elementName, created_at, String.valueOf(elementQuantity), String.valueOf(elementPrice), String.valueOf(elementTotalPrice));
-        return database.editElement(oldElementName, element);
+        Element element = new Element(elementName, created_at, String.valueOf(elementQuantity), String.valueOf(elementPrice), String.valueOf(elementTotalPrice) ,eid );
+
+        database.updateCategoryTimestamp(created_at , categoryName);
+        return database.editElement(eid, element);
     }
 
     @Override

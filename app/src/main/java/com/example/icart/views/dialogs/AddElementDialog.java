@@ -34,7 +34,6 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
     private AlertDialog.Builder builder;
     private AddElement.AddElementPresenter presenter;
     private Element oldElement;
-    private String oldElementName;
     private String oldCategory;
 
 
@@ -65,9 +64,10 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
             addElementDialogBinding.elementTotalPrice.setText(oldElement.getTotal());
             addElementDialogBinding.elementQuantity.setText(oldElement.getQuantity());
             addElementDialogBinding.elementPrice.setText(oldElement.getPrice());
+            addElementDialogBinding.eid.setText(oldElement.getEid());
 
             addElementDialogBinding.addElementButton.setText(getResources().getString(R.string.edit));
-            oldElementName = oldElement.getName();
+
         }
 
 
@@ -89,7 +89,7 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
 
                     if (presenter.editElement(addElementDialogBinding.elementName.getText().toString(),
                             Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
-                            Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice, oldElementName)) {
+                            Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice, oldElement.getEid(), oldCategory)) {
                         dismiss();
 
                         Intent intent = new Intent(getActivity(), getActivity().getClass());
@@ -109,7 +109,7 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
 
                     if (presenter.addElement(addElementDialogBinding.categoryNames.getSelectedItem().toString(), addElementDialogBinding.elementName.getText().toString(),
                             Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
-                            Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice)) {
+                            Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice, addElementDialogBinding.eid.getText().toString())) {
                         dismiss();
                         Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_successfully), Toast.LENGTH_SHORT).show();
                     } else {
@@ -236,8 +236,8 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
     @Override
     public void setOldElementForEdit(Element oldElementForEdit, String categoryName) {
 
-        this.oldElement = oldElementForEdit;
         this.oldCategory = categoryName;
+        this.oldElement = oldElementForEdit;
     }
 
 

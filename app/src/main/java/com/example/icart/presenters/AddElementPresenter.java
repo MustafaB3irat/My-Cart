@@ -20,13 +20,13 @@ public class AddElementPresenter implements AddElement.AddElementPresenter {
     }
 
     @Override
-    public boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice) {
-        return addElementModel.addElement(categoryName, elementName, elementPrice, elementQuantity, elementTotalPrice);
+    public boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice , String eid) {
+        return addElementModel.addElement(categoryName, elementName, elementPrice, elementQuantity, elementTotalPrice ,eid);
     }
 
     @Override
-    public boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName) {
-        return addElementModel.editElement(elementName, elementPrice, elementQuantity, elementTotalPrice, oldElementName);
+    public boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName , String categoryName) {
+        return addElementModel.editElement(elementName, elementPrice, elementQuantity, elementTotalPrice, oldElementName, categoryName);
     }
 
     @Override

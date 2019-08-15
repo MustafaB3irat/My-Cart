@@ -24,18 +24,18 @@ public interface AddElement {
 
     interface AddElementModel {
 
-        boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice);
+        boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice , String eid);
 
-        boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName);
+        boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName , String categoryName);
 
         Cursor getCategories();
     }
 
     interface AddElementPresenter {
 
-        boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice);
+        boolean addElement(String categoryName, String elementName, float elementPrice, int elementQuantity, float elementTotalPrice , String eid);
 
-        boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName);
+        boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName , String categoryName);
 
         Cursor getCategories();
     }

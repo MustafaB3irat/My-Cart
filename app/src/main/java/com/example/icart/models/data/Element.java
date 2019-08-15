@@ -2,15 +2,16 @@ package com.example.icart.models.data;
 
 public class Element {
 
-    private String name, created_at, quantity, price, total;
+    private String name, created_at, quantity, price, total, eid;
 
 
-    public Element(String name, String created_at, String quantity, String price, String total) {
+    public Element(String name, String created_at, String quantity, String price, String total, String eid) {
         this.name = name;
         this.created_at = created_at;
         this.quantity = quantity;
         this.price = price;
         this.total = total;
+        this.eid = eid;
     }
 
     public String getName() {
@@ -51,5 +52,14 @@ public class Element {
 
     public void setTotal(String total) {
         this.total = total;
+    }
+
+    public String getEid() {
+
+        return eid;
+    }
+
+    public void setEid(String eid) {
+        this.eid = eid;
     }
 }

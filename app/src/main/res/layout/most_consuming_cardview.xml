@@ -7,7 +7,7 @@
 
         <variable
             name="element"
-            type="com.example.icart.models.data.Element" />
+            type="com.example.icart.models.data.MostConsuming" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,50 +28,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/element_price_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="45dp"
-                android:text="@string/element_price"
-                android:textColor="@android:color/white"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <TextView
-                android:id="@+id/element_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:gravity="center"
-                android:text="@{element.price}"
-                android:textColor="@android:color/white"
-                android:textDirection="rtl"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/element_price_text"
-                app:layout_constraintEnd_toStartOf="@id/element_price_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/element_price_text" />
-
 
             <TextView
                 android:id="@+id/element_quantity_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="55dp"
                 android:layout_marginEnd="45dp"
-                android:text="@string/element_quantity"
+                android:text="@string/numOfTimes"
                 android:textColor="@android:color/white"
                 android:textSize="19sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/element_price_text" />
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
@@ -81,7 +50,7 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
                 android:gravity="center"
-                android:text="@{element.quantity}"
+                android:text="@{element.times}"
                 android:textColor="@android:color/white"
                 android:textDirection="rtl"
                 android:textSize="16sp"
@@ -91,14 +60,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/element_quantity_text" />
 
-            <TextView
-                android:id="@+id/eid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@{element.eid}"
-                android:visibility="gone"/>
 
 
             <TextView
@@ -107,10 +68,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="35dp"
                 android:layout_marginEnd="45dp"
+                android:layout_marginBottom="30dp"
                 android:text="@string/total_price"
                 android:textColor="@android:color/white"
                 android:textSize="19sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/element_quantity_text" />
 
@@ -131,37 +94,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/element_total_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/element_total_text" />
-
-
-            <TextView
-                android:id="@+id/element_created_at_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="45dp"
-                android:text="تمت إضافته في تاريخ"
-                android:textColor="@android:color/white"
-                android:textSize="11sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/element_total_text" />
-
-
-            <TextView
-                android:id="@+id/element_created_at"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:gravity="center"
-                android:text="@{element.created_at}"
-                android:textColor="@android:color/white"
-                android:textDirection="rtl"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/element_created_at_text"
-                app:layout_constraintStart_toStartOf="@+id/element_created_at_text"
-                app:layout_constraintTop_toBottomOf="@id/element_created_at_text" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -186,7 +118,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:gravity="center"
-            android:text="@{element.name}"
+            android:text="@{element.elementName}"
             android:textColor="@android:color/black"
             android:textDirection="rtl"
             android:textSize="25sp"

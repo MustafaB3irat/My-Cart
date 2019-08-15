@@ -20,6 +20,7 @@
     <string name="addElementButton">إضافة لقائمة العناصر</string>
     <string name="UpdateElement">تعديل العنصر</string>
     <string name="UpdateCategoryButton">تعديل المجموعة</string>
+    <string name="numOfTimes">عدد مرات الشراء</string>
     <string name="addCategoryButton">إضافة لقائمة المجموعات</string>
     <string name="category_names_isEmpty">* الرجاء اختيار مجموعة</string>
     <string name="category_name_isEmpty">* الرجاء اضافة اسم المجموعة</string>
@@ -38,6 +39,8 @@
     <string name="are_you_sure">هل أنت متأكد؟ </string>
     <string name="error">! حدث خطأ ما</string>
     <string name="alert">تحذير !</string>
+    <string name="cheapest">حسب الأرخص</string>
+    <string name="expensive">حسب الأغلى</string>
 
 
 </resources>
