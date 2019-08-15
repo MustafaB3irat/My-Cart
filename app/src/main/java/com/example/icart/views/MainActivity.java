@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.example.icart.R;
 import com.example.icart.databinding.ActivityMainBinding;
 import com.example.icart.interfaces.Main;
+import com.example.icart.views.fragments.AboutApp;
 import com.example.icart.views.fragments.AddFragment;
 import com.example.icart.views.fragments.CategoriesFragment;
 import com.example.icart.views.fragments.CategorySummaryFragment;
@@ -118,6 +119,14 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
 
                     activityMainBinding.drawer.closeDrawer(GravityCompat.START);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new MostConsumingFragment()).commitNow();
+
+                    break;
+                }
+
+                case R.id.about_app: {
+
+                    activityMainBinding.drawer.closeDrawer(GravityCompat.START);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new AboutApp()).commitNow();
 
                     break;
                 }
