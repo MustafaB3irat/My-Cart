@@ -3,71 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/main_bubble"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toTopOf="@+id/caption"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/main_bubble" />
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avatar"
-            android:layout_width="150dp"
-            android:layout_height="110dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="45dp"
-            android:src="@drawable/mustafa"
-            app:layout_constraintEnd_toEndOf="@+id/main_bubble"
-            app:layout_constraintStart_toStartOf="@+id/main_bubble"
-            app:layout_constraintTop_toTopOf="@+id/main_bubble" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="80dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/mustafa" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/caption"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_bubble"
-            app:srcCompat="@drawable/caption" />
-
-        <TextView
-            android:id="@+id/caption_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginEnd="15dp"
-            android:gravity="center"
-            android:text="Mustafa Bi'rat is a Computer Science student in his 4th year at Birzeit university and a former Asal Technologies Trainee in Android Development ..."
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/caption"
-            app:layout_constraintStart_toStartOf="@+id/caption"
-            app:layout_constraintTop_toTopOf="@+id/caption" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
-            android:text="Release version: 1.0.0"
-            android:textColor="@color/toolbar"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/caption_text"
-            app:layout_constraintStart_toStartOf="@+id/caption_text"
-            app:layout_constraintTop_toBottomOf="@+id/caption_text" />
+            android:layout_marginBottom="15dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dot1"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_empty_circle"
+                android:tint="@color/toolbar"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dot2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_circle"
+                android:tint="@color/toolbar"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/dot3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="5dp"
+                app:srcCompat="@drawable/ic_empty_circle"
+                android:tint="@color/toolbar"/>
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

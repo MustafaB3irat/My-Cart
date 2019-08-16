@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -128,6 +129,16 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
                     activityMainBinding.drawer.closeDrawer(GravityCompat.START);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragments, new AboutApp()).commitNow();
 
+                    break;
+                }
+
+                case R.id.Settings: {
+
+                    activityMainBinding.drawer.closeDrawer(GravityCompat.START);
+                    Intent intent = new Intent(this, SettingsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
                     break;
                 }
 

@@ -41,6 +41,9 @@
     <string name="alert">تحذير !</string>
     <string name="cheapest">حسب الأرخص</string>
     <string name="expensive">حسب الأغلى</string>
+    <string name="text_size">حجم النص</string>
+    <string name="lock_feature">خاصية القفل</string>
+    <string name="currency">اسم العملة</string>
 
 
 </resources>
