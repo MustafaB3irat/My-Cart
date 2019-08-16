@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -43,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
 
 
         toolbar = activityMainBinding.toolbar;
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.toolbar, null));
+        }
 
 
     }
@@ -186,5 +191,13 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
             activityMainBinding.drawer.closeDrawer(GravityCompat.START);
         } else
             finish();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        if (hasFocus)
+            actionMenu.close(false);
     }
 }

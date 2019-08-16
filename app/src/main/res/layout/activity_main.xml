@@ -6,12 +6,13 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundGray">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:background="@color/backgroundGray">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -58,7 +59,7 @@
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                android:background="@android:color/white"/>
+                android:background="@color/backgroundGray"/>
 
 
             <androidx.appcompat.widget.AppCompatImageView
