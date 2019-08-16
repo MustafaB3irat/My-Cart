@@ -6,8 +6,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.example.icart.R;
 import com.example.icart.databinding.SettingsBinding;
 import com.example.icart.interfaces.Settings;
@@ -51,14 +49,4 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
 
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-
-        if (hasFocus) {
-            YoYo.with(Techniques.SlideInUp).playOn(settingsBinding.footerLogo);
-        } else {
-            YoYo.with(Techniques.FadeOut).duration(150).playOn(settingsBinding.footerLogo);
-        }
-    }
 }

@@ -7,7 +7,8 @@
         android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundGray">
+        android:background="@color/backgroundGray"
+        tools:openDrawer="start">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -82,7 +83,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/navigation_drawer_menu" />
+            app:menu="@menu/navigation_drawer_menu"
+            android:background="@drawable/navigation_drawer_bg"
+            app:itemIconTint="@color/toolbar"
+            app:itemTextColor="@color/toolbar"
+            app:itemHorizontalPadding="20dp"/>
 
 
     </androidx.drawerlayout.widget.DrawerLayout>
