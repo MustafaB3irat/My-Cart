@@ -43,6 +43,15 @@
     <string name="expensive">حسب الأغلى</string>
     <string name="text_size">حجم النص</string>
     <string name="lock_feature">خاصية القفل</string>
+    <string name="activate_lock_feature">تفعيل خاصية القفل</string>
+    <string name="activate_lock_feature_successfully"> تم تفعيل خاصية القفل</string>
+    <string name="password">كلمة المرور</string>
+    <string name="password_error">كلمة المرور غير صحيحة</string>
+    <string name="hint">كلمة تذكرك بكلمة المرور</string>
+    <string name="enter_password">أدخل كلمة مرور</string>
+    <string name="enter_password_error">يرجى إدخال كلمة مرور</string>
+    <string name="activate">تفعيل</string>
+    <string name="enter">دخول</string>
     <string name="currency">اسم العملة</string>
 
 

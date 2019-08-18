@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import com.example.icart.R;
 import com.example.icart.databinding.ActivityMainBinding;
 import com.example.icart.interfaces.Main;
+import com.example.icart.views.dialogs.SigninDialog;
 import com.example.icart.views.fragments.AboutApp;
 import com.example.icart.views.fragments.AddFragment;
 import com.example.icart.views.fragments.CategoriesFragment;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
     private ActivityMainBinding activityMainBinding;
     private FloatingActionMenu actionMenu;
     public Toolbar toolbar;
+    private SharedPreferences sharedPreferences;
+    private final static String IS_CHECKED = "switch";
+    private static final String SHARED_PREF = "sharedpref";
 
 
     @Override
@@ -35,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
         super.onCreate(savedInstanceState);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         activityMainBinding.sidebar.inflateHeaderView(R.layout.sidebar_header);
+
+        sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+
+        if (sharedPreferences.getBoolean(IS_CHECKED, false)) {
+            SigninDialog signinDialog = new SigninDialog();
+            signinDialog.setCancelable(false);
+            signinDialog.show(getSupportFragmentManager(), "sign in");
+        }
 
         moveToCategoriesFragment();
         initNavigationDrawerMenItems();
