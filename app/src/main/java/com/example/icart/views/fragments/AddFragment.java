@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.icart.R;
 import com.example.icart.databinding.AddLayoutBinding;
 import com.example.icart.interfaces.Add;
@@ -35,6 +36,11 @@ public class AddFragment extends Fragment implements Add.AddFragment {
 
     @Override
     public void initAddButtons() {
+
+        Glide.with(this).load(R.drawable.add_bg).into(addLayoutBinding.addWallpaper);
+        Glide.with(this).load(R.drawable.add_element).into(addLayoutBinding.addElement);
+        Glide.with(this).load(R.drawable.add_category).into(addLayoutBinding.addCategory);
+        Glide.with(this).load(R.drawable.home).into(addLayoutBinding.addHome);
 
         addLayoutBinding.addElement.setOnClickListener(view -> {
 

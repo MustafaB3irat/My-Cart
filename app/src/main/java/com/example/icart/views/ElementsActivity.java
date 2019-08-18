@@ -47,17 +47,24 @@ public class ElementsActivity extends AppCompatActivity implements Elements.Elem
         }
 
 
-        elementsAdapter = new ElementsAdapter(elementList , this);
+        elementsAdapter = new ElementsAdapter(elementList, this);
         elementsLayoutBinding.elementsRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         elementsLayoutBinding.elementsRecyclerview.setAdapter(elementsAdapter);
 
-        elementsLayoutBinding.totalMoney.setText(getResources().getString(R.string.total_price) + " " + String.valueOf(total_price));
+        elementsLayoutBinding.totalMoney.setText(getResources().getString(R.string.total_price1) + " " + String.valueOf(total_price) + MainActivity.currency);
     }
 
     @Override
     public void initBackButton() {
         elementsLayoutBinding.back.setOnClickListener(view -> {
             finish();
+        });
+    }
+
+    @Override
+    public void initAddElement() {
+        elementsLayoutBinding.add.setOnClickListener(view->{
+
         });
     }
 }

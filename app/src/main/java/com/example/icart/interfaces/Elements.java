@@ -15,6 +15,8 @@ public interface Elements {
         void setRecyclerViewAdapter(List<Element> elementList);
 
         void initBackButton();
+
+        void initAddElement();
     }
 
     interface ElementsPresenter {

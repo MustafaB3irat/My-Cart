@@ -22,22 +22,21 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/eid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <Spinner
             android:id="@+id/category_names"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/edittext_shape"
-            android:paddingEnd="25dp"
+            android:layout_marginEnd="40dp"
             android:textAlignment="center"
             android:textDirection="ltr"
             android:textSize="16sp"
@@ -56,16 +55,6 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/category_names"
             app:layout_constraintTop_toBottomOf="@id/category_names" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:tint="@android:color/white"
-            app:layout_constraintEnd_toEndOf="@id/category_names"
-            app:layout_constraintTop_toTopOf="@+id/category_names"
-            app:srcCompat="@drawable/ic_arrow_glyph_down" />
 
 
         <TextView

@@ -48,7 +48,6 @@
             android:inputType="textPassword"
             android:textColor="@color/toolbar"
             android:textColorHint="@color/toolbar"
-            android:textCursorDrawable="@drawable/ic_circle"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

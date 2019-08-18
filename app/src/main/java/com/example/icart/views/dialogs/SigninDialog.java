@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.icart.R;
 import com.example.icart.customListeners.MyTextWatcher;
 import com.example.icart.databinding.LockLayoutBinding;
@@ -48,6 +50,12 @@ public class SigninDialog extends DialogFragment implements Singin.SignInDialog 
         initsignInButton();
         initOnTextChanged();
 
+        if (!TextUtils.isEmpty(sharedPreferences.getString(PASSWORD,""))) {
+            YoYo.with(Techniques.Bounce).duration(200).playOn(lockLayoutBinding.icLock);
+
+            lockLayoutBinding.hint.setText(sharedPreferences.getString(HINT,""));
+        }
+
         return builder.create();
     }
 
@@ -58,8 +66,8 @@ public class SigninDialog extends DialogFragment implements Singin.SignInDialog 
 
             if (validate()) {
 
-                if (lockLayoutBinding.password.getText().equals(sharedPreferences.getString(PASSWORD, ""))) {
-                    this.dismiss();
+                if (lockLayoutBinding.password.getText().toString().equals(sharedPreferences.getString(PASSWORD, ""))) {
+                    dismiss();
                 } else {
 
                     lockLayoutBinding.passwordError.setText(getResources().getString(R.string.password_error));
@@ -93,4 +101,5 @@ public class SigninDialog extends DialogFragment implements Singin.SignInDialog 
         }
         return true;
     }
+
 }

@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
     private SharedPreferences sharedPreferences;
     private final static String IS_CHECKED = "switch";
     private static final String SHARED_PREF = "sharedpref";
+    private static final String CURRENCY = "currency";
+    public static String currency;
 
 
     @Override
@@ -43,10 +45,17 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
 
         sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
 
-        if (sharedPreferences.getBoolean(IS_CHECKED, false)) {
-            SigninDialog signinDialog = new SigninDialog();
-            signinDialog.setCancelable(false);
-            signinDialog.show(getSupportFragmentManager(), "sign in");
+        if (sharedPreferences != null) {
+            if (sharedPreferences.getBoolean(IS_CHECKED, false)) {
+                SigninDialog signinDialog = new SigninDialog();
+                signinDialog.setCancelable(false);
+                signinDialog.show(getSupportFragmentManager(), "sign in");
+            }
+
+            currency = sharedPreferences.getString(CURRENCY, "h");
+
+        } else {
+            currency = "JD";
         }
 
         moveToCategoriesFragment();

@@ -229,7 +229,7 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
         Spinner s = addElementDialogBinding.categoryNames;
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(),
                 android.R.layout.simple_spinner_item, categoriesList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_text);
         s.setAdapter(adapter);
     }
 

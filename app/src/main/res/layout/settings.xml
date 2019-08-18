@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="currency"
+            type="com.example.icart.views.MainActivity" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -163,14 +170,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/curency_spinner"
+
+            <Button
+                android:id="@+id/currency_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
-                android:progress="50"
-                android:thumbTint="@color/toolbar"
+                android:backgroundTint="@color/toolbar"
+                android:drawableEnd="@drawable/ic_money"
+                android:gravity="center"
+                android:text="@{`Currency `+ currency.currency}"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/currency_text"
                 app:layout_constraintEnd_toStartOf="@+id/currency_text"
                 app:layout_constraintStart_toStartOf="parent"

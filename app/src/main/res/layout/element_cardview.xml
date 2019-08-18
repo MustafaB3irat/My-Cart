@@ -8,6 +8,10 @@
         <variable
             name="element"
             type="com.example.icart.models.data.Element" />
+
+        <variable
+            name="currency"
+            type="com.example.icart.views.MainActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +56,7 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
                 android:gravity="center"
-                android:text="@{element.price}"
+                android:text="@{element.price +` `+  currency.currency}"
                 android:textColor="@android:color/white"
                 android:textDirection="rtl"
                 android:textSize="16sp"
@@ -125,7 +129,7 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
                 android:gravity="center"
-                android:text="@{element.total}"
+                android:text="@{element.total + ` ` + currency.currency}"
                 android:textColor="@android:color/white"
                 android:textDirection="rtl"
                 android:textSize="16sp"

@@ -7,6 +7,10 @@
         <variable
             name="category"
             type="com.example.icart.models.data.CategorySummary" />
+
+        <variable
+            name="currency"
+            type="com.example.icart.views.MainActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +89,7 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="20dp"
                     android:gravity="center"
-                    android:text="@{`إجمالي السعر `+ category.total}"
+                    android:text="@{`إجمالي السعر `+  category.total + ` ` + currency.currency }"
                     android:textColor="@android:color/white"
                     android:textSize="25sp"
                     android:textStyle="bold"
