@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-
 import com.example.icart.R;
 import com.example.icart.databinding.ActivityMainBinding;
 import com.example.icart.interfaces.Main;
@@ -20,8 +17,6 @@ import com.example.icart.views.fragments.AddFragment;
 import com.example.icart.views.fragments.CategoriesFragment;
 import com.example.icart.views.fragments.CategorySummaryFragment;
 import com.example.icart.views.fragments.MostConsumingFragment;
-import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
-
 public class MainActivity extends AppCompatActivity implements Main.MainView {
 
     private ActivityMainBinding activityMainBinding;
