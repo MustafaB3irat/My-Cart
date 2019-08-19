@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,12 +22,16 @@ import com.scrounger.countrycurrencypicker.library.CountryCurrencyPicker;
 import com.scrounger.countrycurrencypicker.library.Currency;
 import com.scrounger.countrycurrencypicker.library.Listener.CountryCurrencyPickerListener;
 import com.scrounger.countrycurrencypicker.library.PickerType;
+import com.warkiz.widget.IndicatorSeekBar;
+import com.warkiz.widget.OnSeekChangeListener;
+import com.warkiz.widget.SeekParams;
 
 public class SettingsActivity extends AppCompatActivity implements Settings.SettingsView {
 
     private SettingsBinding settingsBinding;
     private static final String SHARED_PREF = "sharedpref";
     private final static String IS_CHECKED = "switch";
+    private static final String FONT_SIZE = "fontsize";
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -34,10 +40,13 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
 
         settingsBinding = DataBindingUtil.setContentView(this, R.layout.settings);
 
+        sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setNavigationBarColor(getResources().getColor(R.color.toolbar, null));
         }
+
 
         initBackButton();
         initChangeCurrency();
@@ -56,7 +65,6 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
     @Override
     public void initLockFeatureSwitch() {
 
-        sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
 
         settingsBinding.lockSwitch.setChecked(sharedPreferences.getBoolean(IS_CHECKED, false));
 
@@ -103,10 +111,9 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     finish();
                     startActivity(intent);
-                    overridePendingTransition(0,0);
+                    overridePendingTransition(0, 0);
 
                     Toast.makeText(SettingsActivity.this, getResources().getString(R.string.update_currency_sucessfullr), Toast.LENGTH_SHORT).show();
-
 
 
                 }
@@ -124,7 +131,7 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     finish();
                     startActivity(intent);
-                    overridePendingTransition(0,0);
+                    overridePendingTransition(0, 0);
 
                     Toast.makeText(SettingsActivity.this, getResources().getString(R.string.update_currency_sucessfullr), Toast.LENGTH_SHORT).show();
 
@@ -139,6 +146,45 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
 
     @Override
     public void initTextSeekBar() {
+
+
+        if (sharedPreferences != null) {
+            settingsBinding.textSizeSeekbar.setProgress(sharedPreferences.getFloat(FONT_SIZE, 20));
+        }
+
+        settingsBinding.textSizeSeekbar.setOnSeekChangeListener(new OnSeekChangeListener() {
+            @Override
+            public void onSeeking(SeekParams seekParams) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(IndicatorSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
+
+                settingsBinding.currencyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, seekBar.getProgress());
+                settingsBinding.lockFeatureText.setTextSize(TypedValue.COMPLEX_UNIT_SP, seekBar.getProgress());
+                settingsBinding.settingsText.setTextSize(TypedValue.COMPLEX_UNIT_SP, seekBar.getProgress());
+                settingsBinding.textSizeText.setTextSize(TypedValue.COMPLEX_UNIT_SP, seekBar.getProgress());
+
+                seekBar.setProgress(seekBar.getProgressFloat());
+
+
+                SharedPreferences prefs = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+                SharedPreferences.Editor ed = prefs.edit();
+                if (seekBar.getProgress() != 20) {
+                    ed.putFloat(FONT_SIZE, seekBar.getProgress());
+                    ed.apply();
+                } else {
+                    ed.remove(FONT_SIZE).apply();
+                }
+
+            }
+        });
 
     }
 

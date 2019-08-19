@@ -1,10 +1,14 @@
 package com.example.icart.adapters;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,11 +33,15 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Elemen
     private ElementsActivity activity;
     private DatabaseHelpers databaseHelpers;
     private ActionMode actionMode;
+    private final String FONT_SIZE = "fontsize";
+    private final String SHARED_PREF = "sharedpref";
+    private SharedPreferences sharedPreferences;
 
     public ElementsAdapter(List<Element> elements, ElementsActivity elementsActivity) {
         this.elements = elements;
         this.activity = elementsActivity;
         this.databaseHelpers = new DatabaseHelpers(activity);
+        sharedPreferences=elementsActivity.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -50,6 +58,8 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Elemen
         holder.cardviewBinding.setElement(elements.get(position));
 
         initCardViewLongClickListener(holder);
+
+        recursiveLoopChildren(holder.cardviewBinding.elementMainLayout);
 
 
     }
@@ -116,6 +126,27 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Elemen
             super(itemView.getRoot());
 
             this.cardviewBinding = itemView;
+        }
+    }
+
+
+    public void recursiveLoopChildren(ViewGroup parent) {
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            final View child = parent.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                recursiveLoopChildren((ViewGroup) child);
+            } else {
+                if (child != null && child instanceof TextView) {
+
+                    if (sharedPreferences != null) {
+
+                        float textSize = sharedPreferences.getFloat(FONT_SIZE, -1);
+
+                        if (textSize != -1)
+                        ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+                    }
+                }
+            }
         }
     }
 

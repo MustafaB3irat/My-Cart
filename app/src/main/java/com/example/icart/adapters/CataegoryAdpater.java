@@ -2,11 +2,15 @@ package com.example.icart.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,11 +35,15 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
     private CategoriesFragment fragment;
     private DatabaseHelpers databaseHelpers;
     private ActionMode actionMode;
+    private final String FONT_SIZE = "fontsize";
+    private final String SHARED_PREF = "sharedpref";
+    private SharedPreferences sharedPreferences;
 
     public CataegoryAdpater(List<Catagory> catagories, CategoriesFragment fragment) {
         this.catagories = catagories;
         this.fragment = fragment;
         databaseHelpers = new DatabaseHelpers(fragment.getContext());
+        sharedPreferences = fragment.getActivity().getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -56,6 +64,8 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
 
         holder.categoriesCardviewBinding.setCategory(catagory);
 
+        recursiveLoopChildren(holder.categoriesCardviewBinding.cardview);
+
 
         holder.categoriesCardviewBinding.categoryAvatar.setAnimation(AnimationUtils.loadAnimation(fragment.getContext(), R.anim.fade_in_transition));
         holder.categoriesCardviewBinding.cardview.setAnimation(AnimationUtils.loadAnimation(fragment.getContext(), R.anim.fade_in_scale));
@@ -66,21 +76,21 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
         }
 
         initCardViewClickable(holder.categoriesCardviewBinding);
-        initCardViewLongClick(holder.categoriesCardviewBinding , holder);
+        initCardViewLongClick(holder.categoriesCardviewBinding, holder);
 
 
     }
 
 
-    private void initCardViewLongClick(CategoriesCardviewBinding categoriesCardviewBinding , CategoryViewHolder categoryViewHolder) {
+    private void initCardViewLongClick(CategoriesCardviewBinding categoriesCardviewBinding, CategoryViewHolder categoryViewHolder) {
         categoriesCardviewBinding.cardview.setOnLongClickListener(view -> {
             view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
 
-            CategoryActionModeCallBack categoryActionModeCallBack = new CategoryActionModeCallBack(this , categoryViewHolder);
+            CategoryActionModeCallBack categoryActionModeCallBack = new CategoryActionModeCallBack(this, categoryViewHolder);
 
-            actionMode = ((MainActivity)fragment.getActivity()).toolbar.startActionMode(categoryActionModeCallBack);
+            actionMode = ((MainActivity) fragment.getActivity()).toolbar.startActionMode(categoryActionModeCallBack);
             if (actionMode == null)
-                return  false;
+                return false;
 
 
             return true;
@@ -151,6 +161,25 @@ public class CataegoryAdpater extends RecyclerView.Adapter<CataegoryAdpater.Cate
         public CategoryViewHolder(@NonNull CategoriesCardviewBinding itemView) {
             super(itemView.getRoot());
             this.categoriesCardviewBinding = itemView;
+        }
+    }
+
+    public void recursiveLoopChildren(ViewGroup parent) {
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            final View child = parent.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                recursiveLoopChildren((ViewGroup) child);
+            } else {
+                if (child != null && child instanceof TextView) {
+
+                    if (sharedPreferences != null) {
+                        float textSize = sharedPreferences.getFloat(FONT_SIZE, -1);
+
+                        if (textSize != -1)
+                            ((TextView) child).setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+                    }
+                }
+            }
         }
     }
 }

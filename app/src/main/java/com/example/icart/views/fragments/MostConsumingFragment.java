@@ -46,7 +46,7 @@ public class MostConsumingFragment extends Fragment implements MostConsuming.Mos
     @Override
     public void setRecyclerViewAdapter(List<com.example.icart.models.data.MostConsuming> mostConsumings) {
 
-        adapter = new MostConsumingAdapter(mostConsumings);
+        adapter = new MostConsumingAdapter(mostConsumings, this);
 
         mostConsumingFragmentBinding.mostConsumingRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
         mostConsumingFragmentBinding.mostConsumingRecyclerview.setAdapter(adapter);

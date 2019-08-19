@@ -1,6 +1,7 @@
 package com.example.icart.views;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -37,9 +38,17 @@ public class HelpActivity extends AppIntro {
         setVibrate(true);
         setVibrateIntensity(30);
 
+        setFadeAnimation();
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.toolbar, null));
+        }
+
+
+
 
     }
-    
+
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);

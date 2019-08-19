@@ -44,7 +44,7 @@ public class CategorySummaryFragment extends Fragment implements CategorySummary
     public void setRecyclerViewAdapter(List<com.example.icart.models.data.CategorySummary> catagoryList) {
 
 
-        categorySummaryAdapter = new CategorySummaryAdapter(catagoryList);
+        categorySummaryAdapter = new CategorySummaryAdapter(catagoryList,this);
         categorySummaryFragmentBinding.categoriesRecyclerview.setAdapter(categorySummaryAdapter);
         categorySummaryFragmentBinding.categoriesRecyclerview.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

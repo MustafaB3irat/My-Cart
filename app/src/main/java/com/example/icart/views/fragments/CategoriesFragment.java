@@ -38,6 +38,7 @@ public class CategoriesFragment extends Fragment implements Categories.Categorie
 
         presenter.getCategories();
 
+
         return categoriesLayoutBinding.getRoot();
     }
 
