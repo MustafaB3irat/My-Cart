@@ -2,6 +2,7 @@ package com.example.icart.views;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -32,6 +33,11 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
         super.onCreate(savedInstanceState);
 
         settingsBinding = DataBindingUtil.setContentView(this, R.layout.settings);
+
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.toolbar, null));
+        }
 
         initBackButton();
         initChangeCurrency();

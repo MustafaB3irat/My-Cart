@@ -1,6 +1,7 @@
 package com.example.icart.views;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,7 +15,9 @@ import com.example.icart.databinding.ElementsLayoutBinding;
 import com.example.icart.interfaces.Elements;
 import com.example.icart.models.data.Element;
 import com.example.icart.presenters.ElementsPresenter;
+import com.example.icart.views.dialogs.AddElementDialog;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ElementsActivity extends AppCompatActivity implements Elements.ElementsView {
@@ -31,7 +34,13 @@ public class ElementsActivity extends AppCompatActivity implements Elements.Elem
         presenter = new ElementsPresenter(this);
 
         presenter.getElements(getIntent().getStringExtra("category"));
+
+        initAddElement();
         initBackButton();
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.toolbar, null));
+        }
 
 
     }
@@ -39,6 +48,8 @@ public class ElementsActivity extends AppCompatActivity implements Elements.Elem
     @SuppressLint("SetTextI18n")
     @Override
     public void setRecyclerViewAdapter(List<Element> elementList) {
+
+        Collections.reverse(elementList);
 
         float total_price = 0;
 
@@ -63,7 +74,11 @@ public class ElementsActivity extends AppCompatActivity implements Elements.Elem
 
     @Override
     public void initAddElement() {
-        elementsLayoutBinding.add.setOnClickListener(view->{
+        elementsLayoutBinding.add.setOnClickListener(view -> {
+
+            AddElementDialog addElementDialog = new AddElementDialog();
+            addElementDialog.setCategoryName(getIntent().getStringExtra("category"));
+            addElementDialog.show(getSupportFragmentManager(), "Add Element from Elements Screen");
 
         });
     }

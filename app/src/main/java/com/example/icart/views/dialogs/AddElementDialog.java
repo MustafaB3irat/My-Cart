@@ -24,6 +24,7 @@ import com.example.icart.databinding.AddElementDialogBinding;
 import com.example.icart.interfaces.AddElement;
 import com.example.icart.models.data.Element;
 import com.example.icart.presenters.AddElementPresenter;
+import com.example.icart.views.ElementsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,7 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
     private AddElement.AddElementPresenter presenter;
     private Element oldElement;
     private String oldCategory;
+    private String CategoryName;
 
 
     @NonNull
@@ -68,6 +70,12 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
 
             addElementDialogBinding.addElementButton.setText(getResources().getString(R.string.edit));
 
+        }
+
+        if (CategoryName != null) {
+            addElementDialogBinding.categoryNames.setSelection(((ArrayAdapter) addElementDialogBinding.categoryNames.getAdapter()).getPosition(CategoryName));
+            addElementDialogBinding.categoryNames.setVisibility(View.GONE);
+            addElementDialogBinding.categoryNameText.setVisibility(View.GONE);
         }
 
 
@@ -111,6 +119,17 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
                             Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()),
                             Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString()), totalPrice, addElementDialogBinding.eid.getText().toString())) {
                         dismiss();
+
+                        if (CategoryName != null) {
+                            Intent intent = getActivity().getIntent();
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            intent.putExtra("category", CategoryName);
+                            getActivity().finish();
+                            startActivity(intent);
+                            getActivity().overridePendingTransition(0, 0);
+                        }
+
+
                         Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_successfully), Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(this.getContext(), getResources().getString(R.string.added_element_error), Toast.LENGTH_SHORT).show();
@@ -241,4 +260,7 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
     }
 
 
+    public void setCategoryName(String categoryName) {
+        CategoryName = categoryName;
+    }
 }

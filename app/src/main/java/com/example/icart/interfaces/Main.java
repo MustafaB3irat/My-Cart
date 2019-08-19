@@ -14,14 +14,13 @@ public interface Main {
     interface MainView {
 
         void initMenuButton();
-        void initMultiMenuButton();
+
+        void initAddButton();
+
         void initNavigationDrawerMenItems();
 
         void moveToCategoriesFragment();
 
-        View.OnClickListener initAddButtonListener();
-        View.OnClickListener initRemoveButtonListener();
-        View.OnClickListener initEditButtonListener();
 
     }
 }

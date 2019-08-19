@@ -59,7 +59,7 @@
             android:layout_marginBottom="15dp"
             android:backgroundTint="@color/toolbar"
             android:gravity="center"
-            android:text="@string/addElementButton"
+            android:text="@string/addCategoryButton"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="18sp"
