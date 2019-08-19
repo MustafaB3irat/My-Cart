@@ -53,4 +53,9 @@ public class AddElementModel implements AddElement.AddElementModel {
     public Cursor getCategories() {
         return database.getCategories();
     }
+
+    @Override
+    public Cursor getElements(String categoryName) {
+        return database.getElements(categoryName);
+    }
 }

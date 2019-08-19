@@ -27,7 +27,9 @@ import com.example.icart.presenters.AddElementPresenter;
 import com.example.icart.views.ElementsActivity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AddElementDialog extends DialogFragment implements AddElement.AddElementDialog {
 
@@ -78,6 +80,8 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
             addElementDialogBinding.categoryNameText.setVisibility(View.GONE);
         }
 
+
+        presenter.getElements(addElementDialogBinding.categoryNames.getSelectedItem().toString());
 
         return builder.create();
     }
@@ -172,7 +176,19 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
             addElementDialogBinding.elementQuantityError.setText(getResources().getString(R.string.element_quantity_isEmpty));
             isValid = false;
         }
+
+        if (!isValid)
+            return isValid;
+
+
+        if (addElementDialogBinding.elementPrice.getText().toString().equals(".")) {
+            addElementDialogBinding.elementPriceError.setText(getResources().getString(R.string.not_allowed));
+            isValid = false;
+        }
+
         return isValid;
+
+
     }
 
     @Override
@@ -220,7 +236,18 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
 
         addElementDialogBinding.elementQuantity.addTextChangedListener(new MyTextWatcher(() -> {
 
-            if (!TextUtils.isEmpty(addElementDialogBinding.elementQuantity.getText()) && !TextUtils.isEmpty(addElementDialogBinding.elementPrice.getText())) {
+            if (!TextUtils.isEmpty(addElementDialogBinding.elementQuantity.getText()) && !TextUtils.isEmpty(addElementDialogBinding.elementPrice.getText()) && !addElementDialogBinding.elementPrice.getText().toString().equals(".")) {
+
+                float totalPrice = Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()) * Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString());
+                String totalPriceString = String.valueOf(totalPrice);
+                addElementDialogBinding.elementTotalPrice.setText(totalPriceString);
+            }
+
+        }));
+
+        addElementDialogBinding.elementPrice.addTextChangedListener(new MyTextWatcher(() -> {
+
+            if (!TextUtils.isEmpty(addElementDialogBinding.elementQuantity.getText()) && !TextUtils.isEmpty(addElementDialogBinding.elementPrice.getText()) && !addElementDialogBinding.elementPrice.getText().toString().equals(".")) {
 
                 float totalPrice = Float.parseFloat(addElementDialogBinding.elementPrice.getText().toString()) * Integer.parseInt(addElementDialogBinding.elementQuantity.getText().toString());
                 String totalPriceString = String.valueOf(totalPrice);
@@ -257,6 +284,25 @@ public class AddElementDialog extends DialogFragment implements AddElement.AddEl
 
         this.oldCategory = categoryName;
         this.oldElement = oldElementForEdit;
+    }
+
+    @Override
+    public void initAutoCompleteText(List<String> elements) {
+
+        Set<String> uniqueElements = new HashSet<String>(elements);
+
+        List<String> uniqueElementsList = new ArrayList<>();
+
+        for (String value : uniqueElements) {
+
+            uniqueElementsList.add(value);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this.getContext(), android.R.layout.select_dialog_item, uniqueElementsList);
+        addElementDialogBinding.elementName.setThreshold(1); //will start working from first character
+        addElementDialogBinding.elementName.setAdapter(adapter);
+
     }
 
 

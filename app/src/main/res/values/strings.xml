@@ -34,6 +34,7 @@
     <string name="update_category_successfully">تم تعديل المجموعة بنجاح!</string>
     <string name="update_currency_sucessfullr">تم تعديل اسم العملة بنجاح!</string>
     <string name="added_element_error">! حدث خطأ ما في اضافة العنصر </string>
+    <string name="not_allowed">عملية غير مسموحة</string>
     <string name="update_element_error">! حدث خطأ ما في تعديل العنصر </string>
     <string name="added_category_error">! حدث خطأ ما في اضافة المجموعة </string>
     <string name="update_category_error">! حدث خطأ ما في تعديل المجموعة </string>

@@ -4,6 +4,8 @@ import android.database.Cursor;
 
 import com.example.icart.models.data.Element;
 
+import java.util.List;
+
 public interface AddElement {
 
     interface AddElementDialog {
@@ -20,6 +22,8 @@ public interface AddElement {
 
         void setOldElementForEdit(Element oldElementForEdit, String categoryName);
 
+        void initAutoCompleteText(List<String> elements);
+
     }
 
     interface AddElementModel {
@@ -29,6 +33,8 @@ public interface AddElement {
         boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName , String categoryName);
 
         Cursor getCategories();
+
+        Cursor getElements(String categoryName);
     }
 
     interface AddElementPresenter {
@@ -38,5 +44,6 @@ public interface AddElement {
         boolean editElement(String elementName, float elementPrice, int elementQuantity, float elementTotalPrice, String oldElementName , String categoryName);
 
         Cursor getCategories();
+        void getElements(String categoryName);
     }
 }
