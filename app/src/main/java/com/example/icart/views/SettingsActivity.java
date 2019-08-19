@@ -66,7 +66,8 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
     public void initLockFeatureSwitch() {
 
 
-        settingsBinding.lockSwitch.setChecked(sharedPreferences.getBoolean(IS_CHECKED, false));
+        if (sharedPreferences != null)
+            settingsBinding.lockSwitch.setChecked(sharedPreferences.getBoolean(IS_CHECKED, false));
 
         settingsBinding.lockSwitch.setOnCheckedChangeListener((view, isChecked) -> {
 

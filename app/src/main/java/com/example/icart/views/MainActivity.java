@@ -43,10 +43,10 @@ public class MainActivity extends AppCompatActivity implements Main.MainView {
                 signinDialog.show(getSupportFragmentManager(), "sign in");
             }
 
-            currency = sharedPreferences.getString(CURRENCY, "h");
+            currency = sharedPreferences.getString(CURRENCY, "USD");
 
         } else {
-            currency = "JD";
+            currency = "USD";
         }
 
         moveToCategoriesFragment();
