@@ -37,7 +37,7 @@ public class SigninDialog extends DialogFragment implements Singin.SignInDialog 
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
 
-        builder = new AlertDialog.Builder(getContext(), R.style.MyDialogTheme);
+        builder = new AlertDialog.Builder(getContext());
 
 
         LayoutInflater inflater = getActivity().getLayoutInflater();

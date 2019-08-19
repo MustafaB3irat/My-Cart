@@ -105,7 +105,7 @@ public class ElementsAdapter extends RecyclerView.Adapter<ElementsAdapter.Elemen
                 .setPositiveButton(android.R.string.yes, (dialog, whichButton) -> {
 
 
-                    if (databaseHelpers.deleteElement(elements.get(adapterPosition).getName())) {
+                    if (databaseHelpers.deleteElement(elements.get(adapterPosition).getEid())) {
                         elements.remove(adapterPosition);
                         this.notifyDataSetChanged();
                     } else {

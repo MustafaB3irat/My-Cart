@@ -16,6 +16,8 @@ import com.example.icart.R;
 import com.example.icart.databinding.SettingsBinding;
 import com.example.icart.interfaces.Settings;
 import com.example.icart.views.dialogs.LockFeatureDialog;
+import com.mynameismidori.currencypicker.CurrencyPicker;
+import com.mynameismidori.currencypicker.CurrencyPickerListener;
 import com.scrounger.countrycurrencypicker.library.Buttons.CountryCurrencyButton;
 import com.scrounger.countrycurrencypicker.library.Country;
 import com.scrounger.countrycurrencypicker.library.CountryCurrencyPicker;
@@ -44,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
 
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.toolbar, null));
+            getWindow().setNavigationBarColor(getColor(R.color.toolbar));
         }
 
 
@@ -91,58 +93,43 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
     public void initChangeCurrency() {
 
         settingsBinding.currencyButton.setOnClickListener(view -> {
-            CountryCurrencyPicker pickerDialog = CountryCurrencyPicker.newInstance(PickerType.COUNTRYandCURRENCY, new CountryCurrencyPickerListener() {
-                @Override
-                public void onSelectCountry(Country country) {
 
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    if (country.getCurrency() == null) {
-
-                        editor.putString("currency", country.getCode());
-                        editor.apply();
-                        MainActivity.currency = country.getCode();
-                    } else {
-                        editor.putString("currency", country.getCurrency().getSymbol());
-                        editor.apply();
-                        MainActivity.currency = country.getCurrency().getSymbol();
-                    }
-
-                    Intent intent = getIntent();
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    finish();
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-
-                    Toast.makeText(SettingsActivity.this, getResources().getString(R.string.update_currency_sucessfullr), Toast.LENGTH_SHORT).show();
+            CurrencyPicker picker = CurrencyPicker.newInstance("Select Currency");  // dialog title
+            picker.setListener((name, code, symbol, flagDrawableResID) -> {
 
 
-                }
+                SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                @Override
-                public void onSelectCurrency(Currency currency) {
+                if (symbol == null) {
 
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    editor.putString("currency", currency.getSymbol());
+                    editor.putString("currency", code);
                     editor.apply();
-                    MainActivity.currency = currency.getSymbol();
-
-                    Intent intent = getIntent();
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    finish();
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
-
-                    Toast.makeText(SettingsActivity.this, getResources().getString(R.string.update_currency_sucessfullr), Toast.LENGTH_SHORT).show();
-
+                    MainActivity.currency = code;
+                    editor.putString("currency", code);
+                    editor.apply();
+                    MainActivity.currency = code;
+                } else {
+                    editor.putString("currency", symbol);
+                    editor.apply();
+                    MainActivity.currency = symbol;
+                    editor.putString("currency", symbol);
+                    editor.apply();
+                    MainActivity.currency = symbol;
                 }
+
+                Intent intent = getIntent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+
+                Toast.makeText(SettingsActivity.this, getResources().getString(R.string.update_currency_sucessfullr), Toast.LENGTH_SHORT).show();
+
+
             });
+            picker.show(getSupportFragmentManager(), "CURRENCY_PICKER");
 
-            pickerDialog.show(getSupportFragmentManager(), CountryCurrencyPicker.DIALOG_NAME);
         });
-
-
     }
 
     @Override
@@ -151,7 +138,18 @@ public class SettingsActivity extends AppCompatActivity implements Settings.Sett
 
         if (sharedPreferences != null) {
             settingsBinding.textSizeSeekbar.setProgress(sharedPreferences.getFloat(FONT_SIZE, 20));
+
+
+            float fontSize = sharedPreferences.getFloat(FONT_SIZE, -1);
+
+            if (fontSize != -1) {
+                settingsBinding.currencyText.setTextSize(fontSize);
+                settingsBinding.lockFeatureText.setTextSize(fontSize);
+                settingsBinding.settingsText.setTextSize(fontSize);
+                settingsBinding.textSizeText.setTextSize(fontSize);
+            }
         }
+
 
         settingsBinding.textSizeSeekbar.setOnSeekChangeListener(new OnSeekChangeListener() {
             @Override
